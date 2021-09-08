@@ -11,8 +11,10 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_map">Map</string>
-    <string name="menu_location">Location</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="menu_location">Add Location</string>
+    <string name="menu_edit_location">Edit Location</string>
+    <string name="menu_location_list">Locations</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_start_location_text">Enter Start location</string>
     <string name="enter_way_points_hint_text">Enter way points</string>

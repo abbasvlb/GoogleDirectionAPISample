@@ -1,10 +1,15 @@
 package com.example.gdirectionspoc.di
 
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import com.example.gdirectionspoc.db.ApplicationDatabase
 import com.example.gdirectionspoc.network.ApiService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -25,12 +30,12 @@ class ApplicationModule {
     @ApiKey
     @Provides
     @Singleton
-    fun provideApiKey() = ""
+    fun provideApiKey() = "AIzaSyA6tGKklWqUTK2BahzhncAJ8-xg9p03TfE"
 
     @PlacesApiKey
     @Provides
     @Singleton
-    fun providePlacesApiKey() = ""
+    fun providePlacesApiKey() = "AIzaSyDo3gLV1Sd7EwKCnLQvd-ZdxEN2FQs1uNM"
 
     @Provides
     @Singleton
@@ -52,5 +57,18 @@ class ApplicationModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService =
         retrofit.create(ApiService::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
+        context,
+        ApplicationDatabase::class.java, "app database")
+        .fallbackToDestructiveMigration()
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideGDirectionDao(appDatabase: ApplicationDatabase) = appDatabase.gDirectionDao()
 
 }

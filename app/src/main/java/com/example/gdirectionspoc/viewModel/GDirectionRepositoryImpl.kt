@@ -1,5 +1,6 @@
 package com.example.gdirectionspoc.viewModel
 
+import com.example.gdirectionspoc.dao.GDirectionDao
 import com.example.gdirectionspoc.di.ApiKey
 import com.example.gdirectionspoc.network.ApiResponse
 import com.example.gdirectionspoc.network.ApiService
@@ -12,8 +13,10 @@ import javax.inject.Inject
 
 class GDirectionRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    @ApiKey private val apiKey: String
+    @ApiKey private val apiKey: String,
+    private val gDirectionDao: GDirectionDao
 ) : GDirectionRepository {
+
     override suspend fun getGDirections(
         origin: String,
         destination: String,
@@ -32,4 +35,19 @@ class GDirectionRepositoryImpl @Inject constructor(
             e.printStackTrace()
         }
     }.flowOn(Dispatchers.IO)
+
+    override suspend fun insertGDirectionToDb(gDirectionResponse: GDirectionResponse) {
+        gDirectionDao.insert(gDirectionResponse)
+    }
+
+//    override suspend fun getGDirectionsFromDb(): Flow<ApiResponse<ArrayList<GDirectionResponse?>>> = flow {
+//        emit(ApiResponse.Loading(null))
+//        try {
+//            val data = gDirectionDao.getAllGDirections()
+//            emit(ApiResponse.Success(data))
+//        } catch (e: IllegalArgumentException) {
+//            e.printStackTrace()
+//            emit(ApiResponse.Error(null))
+//        }
+//    }.flowOn(Dispatchers.IO)
 }

@@ -29,7 +29,7 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class LocationFragment: Fragment() {
+class AddLocationFragment: Fragment() {
 
     private lateinit var binding: FragmentLocationBinding
 

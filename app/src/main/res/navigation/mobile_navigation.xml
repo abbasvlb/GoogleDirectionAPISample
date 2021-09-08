@@ -10,15 +10,58 @@
         android:name="com.example.gdirectionspoc.ui.map.MapFragment"
         android:label="@string/menu_map"
         tools:layout="@layout/fragment_map" >
+
+        <action android:id="@+id/nav_map_to_nav_location_list"
+            app:destination="@+id/nav_location_list"/>
+
     </fragment>
 
     <fragment
         android:id="@+id/nav_location"
-        android:name="com.example.gdirectionspoc.ui.location.LocationFragment"
+        android:name="com.example.gdirectionspoc.ui.location.AddLocationFragment"
         android:label="@string/menu_location"
         tools:layout="@layout/fragment_location" >
+<!--        <action-->
+<!--            android:id="@+id/action_nav_location_to_nav_location_list"-->
+<!--            app:destination="@id/nav_location_list" />-->
         <action
             android:id="@+id/action_nav_location_to_nav_map"
-            app:destination="@id/nav_map" />
+            app:destination="@id/nav_map"/>
+
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_edit_location"
+        android:name="com.example.gdirectionspoc.ui.location.EditLocationFragment"
+        android:label="@string/menu_edit_location"
+        tools:layout="@layout/fragment_edit_location">
+
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0"/>
+
+        <action android:id="@+id/nav_edit_location_to_nav_location_list"
+            app:destination="@+id/nav_location_list"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_location_list"
+        android:name="com.example.gdirectionspoc.ui.locationList.LocationsListFragment"
+        android:label="@string/menu_location_list"
+        tools:layout="@layout/fragment_locations_list">
+
+        <action android:id="@+id/action_nav_location_list_to_nav_location"
+            app:destination="@+id/nav_location"/>
+
+        <action android:id="@+id/action_nav_location_list_to_nav_edit_location"
+            app:destination="@+id/nav_edit_location"/>
+
+        <action android:id="@+id/nav_location_list_to_nav_map"
+            app:destination="@id/nav_map"/>
+
+    </fragment>
+
+
 </navigation>
