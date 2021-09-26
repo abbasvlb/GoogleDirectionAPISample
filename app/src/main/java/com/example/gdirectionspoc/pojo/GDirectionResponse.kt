@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity
+@Entity(tableName = "g_direction_response_table")
 data class GDirectionResponse(
     @PrimaryKey(autoGenerate = true)
     val id: Int,

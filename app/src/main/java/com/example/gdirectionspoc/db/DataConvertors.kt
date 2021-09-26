@@ -117,24 +117,6 @@ class DataConvertors {
     }
 
     @TypeConverter
-    fun toGDirectionArrayList(value: String): ArrayList<GDirectionResponse?> {
-        val gson = Gson()
-        val type = object : TypeToken<ArrayList<GDirectionResponse?>>(){}.type
-
-        return gson.fromJson(value, type)
-
-    }
-
-    @TypeConverter
-    fun fromGDirectionArrayList(values: ArrayList<GDirectionResponse?>): String {
-        val gson = Gson()
-        val type = object : TypeToken<ArrayList<GDirectionResponse?>>(){}.type
-
-        return gson.toJson(values, type)
-
-    }
-
-    @TypeConverter
     fun toGDirectionResponse(value: String): GDirectionResponse {
         val gson = Gson()
         val type = object : TypeToken<GDirectionResponse>(){}.type

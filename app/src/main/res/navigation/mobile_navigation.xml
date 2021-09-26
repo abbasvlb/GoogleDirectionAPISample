@@ -10,6 +10,10 @@
         android:name="com.example.gdirectionspoc.ui.map.MapFragment"
         android:label="@string/menu_map"
         tools:layout="@layout/fragment_map" >
+
+        <action
+            android:id="@+id/action_nav_map_to_nav_locations"
+            app:destination="@id/nav_locations" />
     </fragment>
 
     <fragment
@@ -17,8 +21,38 @@
         android:name="com.example.gdirectionspoc.ui.addLocation.AddLocationFragment"
         android:label="@string/menu_add_location"
         tools:layout="@layout/fragment_add_location" >
+
         <action
-            android:id="@+id/action_nav_location_to_nav_map"
+            android:id="@+id/action_nav_add_location_to_nav_map"
             app:destination="@id/nav_map" />
     </fragment>
+
+    <fragment
+        android:id="@+id/nav_edit_location"
+        android:name="com.example.gdirectionspoc.ui.editLocation.EditLocationFragment"
+        android:label="@string/menu_edit_location"
+        tools:layout="@layout/fragment_edit_location">
+
+        <action
+            android:id="@+id/action_nav_edit_location_to_nav_map"
+            app:destination="@id/nav_map" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_locations"
+        android:name="com.example.gdirectionspoc.ui.locations.LocationsFragment"
+        android:label="@string/menu_locations"
+        tools:layout="@layout/fragment_locations">
+
+        <action
+            android:id="@+id/action_nav_locations_to_nav_add_location"
+            app:destination="@id/nav_add_location" />
+        <action
+            android:id="@+id/action_nav_locations_to_nav_edit_location"
+            app:destination="@id/nav_edit_location" />
+        <action
+            android:id="@+id/action_nav_locations_to_nav_map"
+            app:destination="@id/nav_map" />
+    </fragment>
+
 </navigation>

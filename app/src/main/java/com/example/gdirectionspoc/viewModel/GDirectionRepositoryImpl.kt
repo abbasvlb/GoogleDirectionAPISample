@@ -39,4 +39,8 @@ class GDirectionRepositoryImpl @Inject constructor(
     override suspend fun insertGDirectionResponseToDb(gDirectionResponse: GDirectionResponse) {
         gDirectionDao.insert(gDirectionResponse)
     }
+
+    override suspend fun getAllGDirectionResponses(): Flow<ArrayList<GDirectionResponse>> = flow {
+        emit(gDirectionDao.getAllGDirectionResponses() as ArrayList)
+    }
 }

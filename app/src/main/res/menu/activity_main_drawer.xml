@@ -8,7 +8,7 @@
             android:id="@+id/nav_map"
             android:title="@string/menu_map" />
         <item
-            android:id="@+id/nav_location"
-            android:title="@string/menu_location" />
+            android:id="@+id/nav_locations"
+            android:title="@string/menu_locations" />
     </group>
 </menu>

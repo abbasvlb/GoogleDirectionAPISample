@@ -46,7 +46,11 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, @MapUrl BASE_URL: String, gson: Gson): Retrofit =
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        @MapUrl BASE_URL: String,
+        gson: Gson
+    ): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -61,10 +65,10 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
-        context,
-        ApplicationDatabase::class.java, "application database"
-    ).build()
+    fun provideAppDatabase(@ApplicationContext context: Context) = Room
+        .databaseBuilder(context, ApplicationDatabase::class.java, "application database")
+        .fallbackToDestructiveMigration()
+        .build()
 
     @Provides
     @Singleton
@@ -72,7 +76,8 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideGDirectionDao(applicationDatabase: ApplicationDatabase) = applicationDatabase.gDirectionDao()
+    fun provideGDirectionDao(applicationDatabase: ApplicationDatabase) =
+        applicationDatabase.gDirectionDao()
 
 
 }

@@ -16,6 +16,7 @@ class GDirectionViewModel @Inject constructor(
 ) : ViewModel() {
 
     val gDirectionMutableLiveData: MutableLiveData<ApiResponse<GDirectionResponse?>> = MutableLiveData()
+    val gDirectionResponsesMutableLiveData: MutableLiveData<ArrayList<GDirectionResponse>> = MutableLiveData()
 
     fun getGDirection(origin: String, destination: String, wayPoint: String){
         viewModelScope.launch {
@@ -28,6 +29,14 @@ class GDirectionViewModel @Inject constructor(
     fun insertGDirectionResponseToDb(gDirectionResponse: GDirectionResponse){
         viewModelScope.launch {
             gDirectionRepositoryImpl.insertGDirectionResponseToDb(gDirectionResponse)
+        }
+    }
+
+    fun getAllGDirectionResponses(){
+        viewModelScope.launch {
+            gDirectionRepositoryImpl.getAllGDirectionResponses().collect {
+                gDirectionResponsesMutableLiveData.postValue(it)
+            }
         }
     }
 }
