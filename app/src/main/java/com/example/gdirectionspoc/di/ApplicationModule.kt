@@ -33,12 +33,12 @@ class ApplicationModule {
     @ApiKey
     @Provides
     @Singleton
-    fun provideApiKey() = "AIzaSyA6tGKklWqUTK2BahzhncAJ8-xg9p03TfE"
+    fun provideApiKey() = ""
 
     @PlacesApiKey
     @Provides
     @Singleton
-    fun providePlacesApiKey() = "AIzaSyDo3gLV1Sd7EwKCnLQvd-ZdxEN2FQs1uNM"
+    fun providePlacesApiKey() = ""
 
     @Provides
     @Singleton
