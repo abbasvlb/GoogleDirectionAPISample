@@ -4,6 +4,7 @@ import com.example.gdirectionspoc.di.ApiKey
 import com.example.gdirectionspoc.network.ApiResponse
 import com.example.gdirectionspoc.network.ApiService
 import com.example.gdirectionspoc.pojo.GDirectionResponse
+import com.example.gdirectionspoc.pojo.dao.GDirectionDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,8 +13,10 @@ import javax.inject.Inject
 
 class GDirectionRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    @ApiKey private val apiKey: String
+    @ApiKey private val apiKey: String,
+    private val gDirectionDao: GDirectionDao
 ) : GDirectionRepository {
+
     override suspend fun getGDirections(
         origin: String,
         destination: String,
@@ -32,4 +35,8 @@ class GDirectionRepositoryImpl @Inject constructor(
             e.printStackTrace()
         }
     }.flowOn(Dispatchers.IO)
+
+    override suspend fun insertGDirectionResponseToDb(gDirectionResponse: GDirectionResponse) {
+        gDirectionDao.insert(gDirectionResponse)
+    }
 }

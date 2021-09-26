@@ -9,5 +9,5 @@ data class Leg(
     @SerializedName("start_location") val startLocation: Location,
     @SerializedName("html_instructions") val htmlInstructions: String,
     @SerializedName("polyline") val polyline: OverviewPolyline,
-    val steps: ArrayList<Leg>,
+    @SerializedName("steps")val steps: ArrayList<Leg>,
 )

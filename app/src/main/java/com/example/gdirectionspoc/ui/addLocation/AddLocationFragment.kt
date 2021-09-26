@@ -1,4 +1,4 @@
-package com.example.gdirectionspoc.ui.location
+package com.example.gdirectionspoc.ui.addLocation
 
 import android.os.Bundle
 import android.util.Log
@@ -11,16 +11,12 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.gdirectionspoc.R
-import com.example.gdirectionspoc.databinding.FragmentLocationBinding
-import com.example.gdirectionspoc.di.ApiKey
+import com.example.gdirectionspoc.databinding.FragmentAddLocationBinding
 import com.example.gdirectionspoc.di.PlacesApiKey
 import com.example.gdirectionspoc.viewModel.GDirectionViewModel
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.AutocompleteSessionToken
 import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.api.model.TypeFilter
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,9 +25,9 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class LocationFragment: Fragment() {
+class AddLocationFragment: Fragment() {
 
-    private lateinit var binding: FragmentLocationBinding
+    private lateinit var binding: FragmentAddLocationBinding
 
     companion object{
         private val AUTOCOMPLETE_REQUEST_CODE = 100
@@ -54,7 +50,7 @@ class LocationFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentLocationBinding.inflate(layoutInflater)
+        binding = FragmentAddLocationBinding.inflate(layoutInflater)
         currentWayPointTv = binding.wayPointTv
 
         gDirectionViewModel = ViewModelProvider(requireActivity()).get(GDirectionViewModel::class.java)

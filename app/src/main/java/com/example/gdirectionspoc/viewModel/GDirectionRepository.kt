@@ -10,4 +10,6 @@ interface GDirectionRepository {
         destination: String,
         wayPoints: String
     ): Flow<ApiResponse<GDirectionResponse?>>
+
+    suspend fun insertGDirectionResponseToDb(gDirectionResponse: GDirectionResponse)
 }

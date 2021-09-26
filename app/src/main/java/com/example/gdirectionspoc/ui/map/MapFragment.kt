@@ -84,6 +84,7 @@ class MapFragment : Fragment() {
                     binding.directionLoadProgressBar.visibility = View.GONE
                     if (it.value!!.status != "ZERO_RESULTS") {
                         setMapDirection(it.value)
+                        gDirectionViewModel!!.insertGDirectionResponseToDb(it.value)
                     }
                 }
             }

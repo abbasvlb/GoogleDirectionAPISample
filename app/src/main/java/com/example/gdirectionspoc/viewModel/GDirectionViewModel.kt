@@ -24,4 +24,10 @@ class GDirectionViewModel @Inject constructor(
             }
         }
     }
+
+    fun insertGDirectionResponseToDb(gDirectionResponse: GDirectionResponse){
+        viewModelScope.launch {
+            gDirectionRepositoryImpl.insertGDirectionResponseToDb(gDirectionResponse)
+        }
+    }
 }
