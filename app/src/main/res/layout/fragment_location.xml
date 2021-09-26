@@ -14,6 +14,9 @@
         android:hint="@string/enter_start_location_text"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:background="@drawable/bg_stroke_location_list_item"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
@@ -38,6 +41,9 @@
             android:gravity="center|start"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"
+            android:background="@drawable/bg_stroke_location_list_item"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:hint="@string/enter_way_points_hint_text"/>
 
     </LinearLayout>

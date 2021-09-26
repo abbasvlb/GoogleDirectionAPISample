@@ -141,7 +141,7 @@ class AddLocationFragment: Fragment() {
         val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
         layoutParams.setMargins(0, 24, 0, 0)
         textView.layoutParams = layoutParams
-        textView.setPadding(0, 24, 0, 24)
+        textView.setPadding(5, 24, 5, 24)
 
         binding.wayPointsLl.addView(textView)
 

@@ -82,9 +82,9 @@ class MapFragment : Fragment() {
                 }
                 is ApiResponse.Success -> {
                     binding.directionLoadProgressBar.visibility = View.GONE
-                    if (it.value!!.status != "ZERO_RESULTS") {
+                    if (it.value!!.status == "OK") {
                         setMapDirection(it.value)
-//                        gDirectionViewModel!!.insertGDirectionToDb(it.value)
+                        gDirectionViewModel!!.insertGDirectionToDb(it.value)
                     }
                 }
             }

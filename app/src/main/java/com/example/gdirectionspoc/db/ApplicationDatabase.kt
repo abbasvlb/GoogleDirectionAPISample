@@ -7,7 +7,7 @@ import androidx.room.TypeConverters
 import com.example.gdirectionspoc.dao.GDirectionDao
 import com.example.gdirectionspoc.pojo.GDirectionResponse
 
-@Database(entities = [GDirectionResponse::class], version = 4, exportSchema = false)
+@Database(entities = [GDirectionResponse::class], version = 7, exportSchema = false)
 @TypeConverters(DataConvertor::class)
 abstract class ApplicationDatabase: RoomDatabase() {
     abstract fun gDirectionDao(): GDirectionDao

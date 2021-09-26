@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/nav_edit_location"
-        android:name="com.example.gdirectionspoc.ui.location.EditLocationFragment"
+        android:name="com.example.gdirectionspoc.ui.editLocation.EditLocationFragment"
         android:label="@string/menu_edit_location"
         tools:layout="@layout/fragment_edit_location">
 

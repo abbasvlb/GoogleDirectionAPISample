@@ -2,6 +2,7 @@ package com.example.gdirectionspoc.viewModel
 
 import com.example.gdirectionspoc.dao.GDirectionDao
 import com.example.gdirectionspoc.di.ApiKey
+import com.example.gdirectionspoc.di.PlacesApiKey
 import com.example.gdirectionspoc.network.ApiResponse
 import com.example.gdirectionspoc.network.ApiService
 import com.example.gdirectionspoc.pojo.GDirectionResponse
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 class GDirectionRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    @ApiKey private val apiKey: String,
+    @PlacesApiKey private val apiKey: String,
     private val gDirectionDao: GDirectionDao
 ) : GDirectionRepository {
 

@@ -1,7 +1,9 @@
 package com.example.gdirectionspoc.pojo
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class OverviewPolyline(
-    @SerializedName("points") val points: String
+    @field:Json(name = "points") val points: String
 )

@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import com.example.gdirectionspoc.db.ApplicationDatabase
+import com.example.gdirectionspoc.db.DataConvertor
 import com.example.gdirectionspoc.network.ApiService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +17,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 
@@ -45,10 +48,14 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, @MapUrl BASE_URL: String): Retrofit =
+    fun provideMoshi(): Moshi = Moshi.Builder().build()
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient, @MapUrl BASE_URL: String, moshi: Moshi): Retrofit =
         Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(okHttpClient)
             .build()
@@ -61,7 +68,7 @@ class ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
+    fun provideAppDatabase(@ApplicationContext context: Context, moshi: Moshi) = Room.databaseBuilder(
         context,
         ApplicationDatabase::class.java, "app database")
         .fallbackToDestructiveMigration()

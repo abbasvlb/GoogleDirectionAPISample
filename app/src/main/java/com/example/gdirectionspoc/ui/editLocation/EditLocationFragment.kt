@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
 import com.example.gdirectionspoc.R
 import com.example.gdirectionspoc.databinding.FragmentEditLocationBinding
-import com.example.gdirectionspoc.ui.location.EditLocationFragmentArgs
+import com.example.gdirectionspoc.ui.editLocation.EditLocationFragmentArgs
 
 private const val ID = "id"
 
@@ -21,7 +21,7 @@ class EditLocationFragment : Fragment() {
     private var gId: Int = 0
 
     //val
-    val args: EditLocationFragmentArgs by navArgs()
+    private val args: EditLocationFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

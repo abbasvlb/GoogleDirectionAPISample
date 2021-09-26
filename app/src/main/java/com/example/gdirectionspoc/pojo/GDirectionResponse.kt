@@ -1,15 +1,19 @@
 package com.example.gdirectionspoc.pojo
 
+
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-@Entity(tableName = "g_direction_table")
+@Entity(tableName = "g_direction_response_table")
+@JsonClass(generateAdapter = true)
 data class GDirectionResponse(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
 
-    @SerializedName("geocoded_waypoints") var geocodedWaypoints: ArrayList<GeoCodedWayPoint>,
-    @SerializedName("routes") var routes: ArrayList<Route>,
-    @SerializedName("status") var status: String
+    @field:Json(name = "geocoded_waypoints") var geocodedWaypoints: ArrayList<GeoCodedWayPoint>,
+
+    @field:Json(name = "routes") var routes: ArrayList<Route>,
+    @field:Json(name = "status") var status: String
 )
