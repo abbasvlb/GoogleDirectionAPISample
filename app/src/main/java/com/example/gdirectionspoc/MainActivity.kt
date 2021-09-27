@@ -21,10 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
-    private val origin: String = "Chennai,IN"
-    private val destination: String = "Chennai,IN"
-    private val wayPoints: ArrayList<String> = arrayListOf("Coimbatore,IN", "Banglore,IN", "Madurai,IN", "Trichy,IN")
-
     private val gDirectionViewModel: GDirectionViewModel by lazy {
         ViewModelProvider(this).get(GDirectionViewModel::class.java)
     }
@@ -50,18 +46,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        val wayPointStringBuilder: StringBuilder = StringBuilder("optimize:true|")
-        wayPoints.forEachIndexed { index, s ->
-            if (index < wayPoints.size-1){
-                wayPointStringBuilder.append(s).append("|")
-            } else {
-                wayPointStringBuilder.append(s)
-            }
-        }
-
-        gDirectionViewModel.getGDirection(origin, destination, wayPointStringBuilder.toString())
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

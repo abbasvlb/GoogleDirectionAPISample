@@ -27,18 +27,17 @@ import kotlin.collections.ArrayList
 @AndroidEntryPoint
 class AddLocationFragment: Fragment() {
 
+    //binding
     private lateinit var binding: FragmentAddLocationBinding
 
-    companion object{
-        private val AUTOCOMPLETE_REQUEST_CODE = 100
-    }
-
+    //views
     private lateinit var currentWayPointTv: TextView
-    private var wayPoints: ArrayList<String> = ArrayList()
     private lateinit var mAutoCompleteFragment: AutocompleteSupportFragment
+
+    //vars
+    private var wayPoints: ArrayList<String> = ArrayList()
     private lateinit var fields: List<Place.Field>
     private lateinit var types: List<Place.Type>
-
     private lateinit var gDirectionViewModel: GDirectionViewModel
 
     @Inject
@@ -94,6 +93,7 @@ class AddLocationFragment: Fragment() {
 
         binding.saveTv.setOnClickListener {
             getGDirections()
+            findNavController().navigate(R.id.action_nav_add_location_to_nav_map)
         }
 
     }

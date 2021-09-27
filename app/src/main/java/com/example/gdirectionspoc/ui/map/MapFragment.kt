@@ -1,22 +1,16 @@
 package com.example.gdirectionspoc.ui.map
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Rect
 import android.os.Bundle
-import android.os.Handler
-import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.PixelCopy
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.example.gdirectionspoc.R
 import com.example.gdirectionspoc.databinding.FragmentMapBinding
 import com.example.gdirectionspoc.databinding.LayoutMapMarkerBinding
@@ -34,13 +28,28 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MapFragment : Fragment() {
 
+    //binding
     private lateinit var binding: FragmentMapBinding
     private lateinit var layoutMapMarkerBinding: LayoutMapMarkerBinding
 
     //vars
+    private var gId: Int = -1
+    private val origin: String = "Chennai,IN"
+    private val destination: String = "Chennai,IN"
+    private val wayPoints: ArrayList<String> = arrayListOf("Coimbatore,IN", "Banglore,IN", "Madurai,IN", "Trichy,IN")
+
+    //val
+    private var gDirectionViewModel: GDirectionViewModel? = null
     private var map: GoogleMap? = null
 
-    private var gDirectionViewModel: GDirectionViewModel? = null
+    //args
+    private val args: MapFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        gId = args.id
+        Log.d(MapFragment::class.java.name, "onCreate: gId = $gId")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -90,6 +99,23 @@ class MapFragment : Fragment() {
             }
 
         })
+
+        gDirectionViewModel!!.countMutableLiveData.observe(requireActivity(), {
+            if (it == 0){
+                val wayPointStringBuilder: StringBuilder = StringBuilder("optimize:true|")
+                wayPoints.forEachIndexed { index, s ->
+                    if (index < wayPoints.size-1){
+                        wayPointStringBuilder.append(s).append("|")
+                    } else {
+                        wayPointStringBuilder.append(s)
+                    }
+                }
+
+                gDirectionViewModel!!.getGDirection(origin, destination, wayPointStringBuilder.toString())
+            } else {
+                gDirectionViewModel!!.getGDirectionById(1)
+            }
+        })
     }
 
     private fun setMapDirection(value: GDirectionResponse?) {
@@ -135,5 +161,11 @@ class MapFragment : Fragment() {
         map = it
 
         setObserver()
+
+        if(gId == -1){
+            gDirectionViewModel!!.getCount()
+        } else {
+            gDirectionViewModel!!.getGDirectionById(gId)
+        }
     }
 }

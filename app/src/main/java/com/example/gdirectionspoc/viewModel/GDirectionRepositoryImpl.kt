@@ -42,5 +42,19 @@ class GDirectionRepositoryImpl @Inject constructor(
 
     override suspend fun getAllGDirectionResponses(): Flow<ArrayList<GDirectionResponse>> = flow {
         emit(gDirectionDao.getAllGDirectionResponses() as ArrayList)
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun getGDirectionById(id: Int): Flow<ApiResponse<GDirectionResponse>> = flow{
+        emit(ApiResponse.Loading(null))
+        try {
+            val data = gDirectionDao.getGDirectionById(id)
+            emit(ApiResponse.Success(data))
+        } catch (e: IllegalArgumentException){
+            emit(ApiResponse.Error(null))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    override suspend fun getCount(): Flow<Int> = flow {
+        emit(gDirectionDao.getCount())
     }
 }

@@ -19,4 +19,5 @@
     <string name="enter_start_location_text">Enter Start location</string>
     <string name="enter_way_points_hint_text">Enter way points</string>
     <string name="save_text">Save</string>
+    <string name="add_location_fab_text">Add location fab</string>
 </resources>

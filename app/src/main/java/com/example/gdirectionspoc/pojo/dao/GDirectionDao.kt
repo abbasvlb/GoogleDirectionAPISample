@@ -14,4 +14,10 @@ interface GDirectionDao {
 
     @Query("Select * from g_direction_response_table")
     suspend fun getAllGDirectionResponses(): List<GDirectionResponse>
+
+    @Query("Select * from g_direction_response_table Where id =:id ")
+    suspend fun getGDirectionById(id: Int): GDirectionResponse
+
+    @Query("Select count(*) from g_direction_response_table")
+    suspend fun getCount(): Int
 }

@@ -3,13 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.locations.LocationsFragment"
-    android:padding="24dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.locations.LocationsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/location_list_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false"
+        android:padding="24dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_location_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_fab"
+        app:fabSize="normal"
+        android:background="@color/transperant"
+        android:contentDescription="@string/add_location_fab_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

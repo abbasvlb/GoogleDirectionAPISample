@@ -11,6 +11,11 @@
         android:label="@string/menu_map"
         tools:layout="@layout/fragment_map" >
 
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1"/>
+
         <action
             android:id="@+id/action_nav_map_to_nav_locations"
             app:destination="@id/nav_locations" />
@@ -24,7 +29,7 @@
 
         <action
             android:id="@+id/action_nav_add_location_to_nav_map"
-            app:destination="@id/nav_map" />
+            app:destination="@id/nav_map"/>
     </fragment>
 
     <fragment
@@ -33,9 +38,15 @@
         android:label="@string/menu_edit_location"
         tools:layout="@layout/fragment_edit_location">
 
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="1"/>
+
         <action
             android:id="@+id/action_nav_edit_location_to_nav_map"
             app:destination="@id/nav_map" />
+
     </fragment>
 
     <fragment

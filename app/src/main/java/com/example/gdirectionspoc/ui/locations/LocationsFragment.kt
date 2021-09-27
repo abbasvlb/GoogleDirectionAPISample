@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gdirectionspoc.R
 import com.example.gdirectionspoc.databinding.FragmentLocationsBinding
 import com.example.gdirectionspoc.pojo.GDirectionResponse
 import com.example.gdirectionspoc.ui.locations.adapter.LocationItemAdapter
@@ -47,7 +49,10 @@ class LocationsFragment : Fragment() {
         setObservers()
 
         gDirectionViewModel!!.getAllGDirectionResponses()
-        
+
+        fragmentLocationBinding.addLocationFab.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_locations_to_nav_add_location)
+        }
     }
 
     private fun initLocationAdapter() {
@@ -61,6 +66,7 @@ class LocationsFragment : Fragment() {
 
     private fun setObservers() {
         gDirectionViewModel!!.gDirectionResponsesMutableLiveData.observe(requireActivity(), {
+            gDirectionsArrayList.clear()
             gDirectionsArrayList.addAll(it)
             locationItemAdapter!!.notifyDataSetChanged()
         })
@@ -68,15 +74,24 @@ class LocationsFragment : Fragment() {
     
     private val locationItemClickListener = object : LocationItemClickListener{
         override fun onItemClicked(id: Int) {
+            val action = LocationsFragmentDirections.actionNavLocationsToNavMap()
+            action.id = id
+            findNavController().navigate(action)
             
         }
 
         override fun onEditClicked(id: Int) {
+            val action = LocationsFragmentDirections.actionNavLocationsToNavEditLocation()
+            action.id = id
+            findNavController().navigate(action)
+
             
         }
 
         override fun onGetLocationClicked(id: Int) {
-            
+            val action = LocationsFragmentDirections.actionNavLocationsToNavMap()
+            action.id = id
+            findNavController().navigate(action)
         }
 
     }

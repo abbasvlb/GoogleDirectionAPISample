@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     
     <color name="item_storke_color">#CC2B5E</color>
+    <color name="transperant">#00FFFFFF</color>
 </resources>

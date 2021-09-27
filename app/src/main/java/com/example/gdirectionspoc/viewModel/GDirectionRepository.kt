@@ -14,4 +14,8 @@ interface GDirectionRepository {
     suspend fun insertGDirectionResponseToDb(gDirectionResponse: GDirectionResponse)
 
     suspend fun getAllGDirectionResponses(): Flow<ArrayList<GDirectionResponse>>
+
+    suspend fun getGDirectionById(id: Int): Flow<ApiResponse<GDirectionResponse>>
+
+    suspend fun getCount(): Flow<Int>
 }
