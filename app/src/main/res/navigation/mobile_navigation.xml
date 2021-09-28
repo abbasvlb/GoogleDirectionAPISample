@@ -27,9 +27,9 @@
         android:label="@string/menu_add_location"
         tools:layout="@layout/fragment_add_location" >
 
-        <action
-            android:id="@+id/action_nav_add_location_to_nav_map"
+        <action android:id="@+id/action_nav_add_locations_to_nav_map"
             app:destination="@id/nav_map"/>
+
     </fragment>
 
     <fragment
@@ -43,9 +43,8 @@
             app:argType="integer"
             android:defaultValue="1"/>
 
-        <action
-            android:id="@+id/action_nav_edit_location_to_nav_map"
-            app:destination="@id/nav_map" />
+        <action android:id="@+id/action_nav_edit_location_to_nav_map"
+            app:destination="@id/nav_map"/>
 
     </fragment>
 

@@ -96,7 +96,7 @@ class EditLocationFragment : Fragment() {
             }
 
             gDirectionViewModel!!.getGDirection(fragmentEditLocationBinding.startLocationTv.text.toString(), fragmentEditLocationBinding.startLocationTv.text.toString(), wayPointStringBuilder.toString())
-            findNavController().navigate(R.id.action_nav_add_location_to_nav_map)
+            findNavController().navigate(R.id.action_nav_edit_location_to_nav_map)
         }
 
         gDirectionViewModel!!.getGDirectionById(gId)

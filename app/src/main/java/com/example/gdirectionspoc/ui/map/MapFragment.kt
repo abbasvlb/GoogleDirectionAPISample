@@ -34,9 +34,6 @@ class MapFragment : Fragment() {
 
     //vars
     private var gId: Int = -1
-    private val origin: String = "Chennai,IN"
-    private val destination: String = "Chennai,IN"
-    private val wayPoints: ArrayList<String> = arrayListOf("Coimbatore,IN", "Banglore,IN", "Madurai,IN", "Trichy,IN")
 
     //val
     private var gDirectionViewModel: GDirectionViewModel? = null
@@ -100,22 +97,6 @@ class MapFragment : Fragment() {
 
         })
 
-        gDirectionViewModel!!.countMutableLiveData.observe(requireActivity(), {
-            if (it == 0){
-                val wayPointStringBuilder: StringBuilder = StringBuilder("optimize:true|")
-                wayPoints.forEachIndexed { index, s ->
-                    if (index < wayPoints.size-1){
-                        wayPointStringBuilder.append(s).append("|")
-                    } else {
-                        wayPointStringBuilder.append(s)
-                    }
-                }
-
-                gDirectionViewModel!!.getGDirection(origin, destination, wayPointStringBuilder.toString())
-            } else {
-                gDirectionViewModel!!.getGDirectionById(1)
-            }
-        })
     }
 
     private fun setMapDirection(value: GDirectionResponse?) {
@@ -162,9 +143,7 @@ class MapFragment : Fragment() {
 
         setObserver()
 
-        if(gId == -1){
-            gDirectionViewModel!!.getCount()
-        } else {
+        if(gId >= 0){
             gDirectionViewModel!!.getGDirectionById(gId)
         }
     }

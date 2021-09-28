@@ -93,7 +93,7 @@ class AddLocationFragment: Fragment() {
 
         binding.saveTv.setOnClickListener {
             getGDirections()
-            findNavController().navigate(R.id.action_nav_add_location_to_nav_map)
+            findNavController().navigate(R.id.action_nav_add_locations_to_nav_map)
         }
 
     }
